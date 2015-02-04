@@ -24,8 +24,9 @@ default: &default
 development:
   <<: *default
   database: quiz_development
-  username: postgresql_user
-  password: 
+  username: postgres_user
+  password: root
+
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.

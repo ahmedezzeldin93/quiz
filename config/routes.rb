@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-	
+
 	get 'welcome/index'
 	root 'welcome#index'
 	get 'api', to: 'welcome#index'
@@ -11,12 +11,14 @@ Rails.application.routes.draw do
       delete 'sessions' => 'sessions#destroy', :as => 'logout'
     end
 	
-	namespace :api, defaults: { format: :json } do
-  		resources :quizzs
+	namespace :api do
+      resources :quizzes
   		resources :groups do
-  		resources :quizzs, only: [:index, :update]
+  		resources :quizzes, only: [:index, :update]
   		end
-  		resources :users 
+  		resources :users do
+      resources :quizzes
+      end
   		resources :questions
 
   		post '/answer_quizz', to: "students_answers#create"

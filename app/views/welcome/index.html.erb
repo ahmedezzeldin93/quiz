@@ -1,8 +1,149 @@
 <h1>Quiz ASU API</h1>
 <h2>Here Will be the documentation for public</h2>
+<hr/>
 
-<h3>Users Authentication<h3>
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+}
+</style>
 
-<h3>1- For Instructor <h3>
+<h3>Users Authentication<h3></hr>
 
-<h3>2- For Student <h3>
+<table style="width:100%">
+  <tr>
+  	<th>Path</th>
+  	<th>HTTP Method</th>
+  	<th>URI</th>
+  	<th>Contoller#Action</th>
+  </tr>
+  
+  <tr> 
+  	<td>new_user_session</td>
+  	<td>GET</td>
+  	<td>/users/sign_in(.:format)</td>
+  	<td>devise/sessions#new</td>
+  </tr>
+  
+  <tr>     
+    <td>user_session</td> 
+    <td>POST</td>   
+    <td>/users/sign_in(.:format) </td>
+    <td>devise/sessions#create</td>
+  </tr>
+  
+  <tr>
+    <td>destroy_user_session</td> 
+    <td>DELETE </td>
+    <td>/users/sign_out(.:format)</td>
+    <td>devise/sessions#destroy</td>
+  </tr>
+  
+  <tr>
+    <td>user_password</td> 
+    <td>POST</td>
+    <td>/users/password(.:format)</td>
+    <td>devise/passwords#create</td>
+  </tr>
+       
+  <tr>
+    <td>new_user_password</td>
+    <td> GET</td>
+    <td>/users/password/new(.:format)</td>
+    <td>devise/passwords#new </td>
+  </tr>
+
+  <tr>
+    <td>edit_user_password</td>
+    <td> GET </td>
+    <td>/users/password/edit(.:format)</td>
+    <td>devise/passwords#edit</td>
+  </tr>
+  
+  <tr>
+    <td>  </td>
+    <td>PATCH</td>  
+    <td>/users/password(.:format)</td>
+    <td>devise/passwords#update</td>
+  </tr>
+
+  <tr>
+    <td>  </td>
+    <td>PUT</td>
+    <td>/users/password(.:format)</td> 
+    <td>devise/passwords#update</td>
+  </tr>
+
+  <tr>
+    <td>cancel_user_registration</td>
+    <td> GET</td>
+    <td> /users/cancel(.:format)</td>
+    <td>devise/registrations#cancel</td>
+  </tr>
+
+  <tr>
+    <td> user_registration</td>
+    <td> POST </td>
+    <td>/users(.:format)</td>
+    <td>devise/registrations#create</td>
+  </tr>
+
+  <tr>
+   <td>new_user_registration</td>
+   <td> GET </td>
+   <td> /users/sign_up(.:format) </td> 
+   <td>devise/registrations#new</td>
+ </tr>
+
+ <tr>
+  <td>edit_user_registration</td> 
+  <td>GET </td> 
+  <td>/users/edit(.:format)</td> 
+  <td>devise/registrations#edit</td>
+</tr>
+
+  <tr>
+    <td>  </td>
+    <td>PATCH</td>
+    <td>/users(.:format) </td> 
+    <td> devise/registrations#update</td>
+  </tr>
+
+  <tr>
+    <td>  </td>
+    <td> PUT </td>  
+    <td> /users(.:format) </td>
+    <td> devise/registrations#update</td>
+  </tr>
+
+  <tr>
+    <td>  </td>
+    <td>DELETE</td> 
+    <td>/users(.:format)</td>   
+    <td> devise/registrations#destroy</td>
+   </tr>
+ 
+  <tr>
+    <td>register</td> 
+    <td>POST</td> 
+    <td>/registrations(.:format) </td> 
+    <td>registrations#create</td>
+  </tr>
+
+  <tr>
+      <td> login</td> 
+      <td>POST </td> 
+      <td> /sessions(.:format)</td>  
+      <td>sessions#create</td>
+    </tr>
+
+  <tr>
+      <td> logout</td> 
+      <td>DELETE </td>
+      <td>/sessions(.:format) </td>                       
+      <td>sessions#destroy</td>
+  </tr>

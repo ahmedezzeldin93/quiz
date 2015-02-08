@@ -11,10 +11,62 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150205040209) do
+ActiveRecord::Schema.define(version: 20150208035235) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answers", force: :cascade do |t|
+    t.integer  "question_id"
+    t.string   "title"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.integer  "instructor_id"
+    t.string   "group_name"
+    t.string   "description"
+    t.integer  "number_of_students"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  create_table "memberships", force: :cascade do |t|
+    t.integer  "student_id"
+    t.integer  "group_id"
+    t.boolean  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "right_answer_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "quizzs", force: :cascade do |t|
+    t.integer  "instructor_id"
+    t.integer  "group_id"
+    t.string   "title"
+    t.string   "subject"
+    t.string   "description"
+    t.integer  "mark"
+    t.date     "date_to_publish"
+    t.time     "time_to_publish"
+    t.boolean  "status"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "students_answers", force: :cascade do |t|
+    t.integer "student_id"
+    t.integer "answer_id"
+  end
+
+  add_index "students_answers", ["student_id", "answer_id"], name: "index_students_answers_on_student_id_and_answer_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "username",                            null: false
@@ -37,8 +89,10 @@ ActiveRecord::Schema.define(version: 20150205040209) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "auth_token"
   end
 
+  add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 

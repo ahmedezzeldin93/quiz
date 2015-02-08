@@ -3,18 +3,33 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-
-    USERNAME_REGEX = /[a-zA-Z](([\._\-][a-zA-Z0-9])|[a-zA-Z0-9])*[a-z0-9]/
-    NAME_REGEX = /[a-zA-Z]/
 	
-	validates :username, 
-	presence: true,
-	length: { minimum: 5, maximum: 25},
-	uniqueness: true,
-	format: USERNAME_REGEX
-
-
-	validates :first_name, presence: true,format: NAME_REGEX
-	validates :last_name, presence: true,format: NAME_REGEX
+	#Validations 
+	validates :username, presence: true
 	validates :type, presence: true
+	validates :auth_token, uniqueness: true
+end
+
+class Student< User
+	#Relationships
+	has_many    :memberships ,foreign_key: 'student_id'
+	has_and_belongs_to_many :answers, join_table: :students_answers, foreign_key: :student_id
+
+	#Methodes
+	def self.model_name
+		User.model_name
+	end
+
+end
+
+
+class Instructor< User
+	#Relationships
+	has_many    :groups
+    has_many    :quizzs
+
+    #Methodes
+    def self.model_name
+		User.model_name
+	end
 end

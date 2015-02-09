@@ -16,4 +16,4 @@
 doc/
 *.swp
 *~
-.DS_Store
+.DS_Store.env

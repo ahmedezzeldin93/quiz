@@ -56,3 +56,6 @@ group :test do
 end
 
 gem "devise"
+gem 'devise-token_authenticatable'
+
+gem 'puma'
